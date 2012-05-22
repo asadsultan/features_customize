@@ -1,0 +1,25 @@
+<?php
+/*
+function features_customize_menu() {
+  $items = array();
+  $items['admin/structure/features-customize'] = array(
+    'title' => 'Features Customize',
+    'description' => 'Customize features.',
+    'page callback' => 'features_cuztomize_test',
+    'access arguments' => TRUE,
+    'type' => MENU_NORMAL_ITEM,
+  );
+  return $items;
+}
+*/
+module_load_include('inc', 'features', '/include/features.node');
+
+function features_customize_node_info_alter(&$node_info){
+  foreach ($node_info as $module => $info) {
+    $code = node_features_export_render($module,array($module), NULL, 'node');
+    $code = eval($code['node_info']);
+    $data = array_values($code);
+      $node_info[$module]['name'] = $data[0]['name'];
+    
+  } 
+}

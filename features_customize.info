@@ -1,0 +1,4 @@
+name = "Features Customize"
+description = "Enable feature component customization for Drupal sites without overriding the code."
+core = 7.x
+package = "Features"
